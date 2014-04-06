@@ -8,7 +8,6 @@
 static char font[] = "monoOne:pixelsize=13.5:autohint=false";
 static int borderxpx = 2;
 static int borderypx = 0;
-static int borderpx = 5;
 
 static char shell[] = "/bin/sh";
 
@@ -76,7 +75,7 @@ static const char *colorname[] = {
 
 	[255] = 0,
 	"#1a1a1a",
-	"#e9e9e9",
+	"#e1e1e1",
 	"#ae81ff",
 
 	/* more colors can be added after 255 to use with DefaultXX */
@@ -94,7 +93,7 @@ static unsigned int defaultbg = 257;
 static unsigned int defaultcs = 258;
 
 /* background opacity */
-static const int alpha = 0xaa;
+static const int alpha = 0xdd;
 //static const int alpha = 0xdd;
 
 /*

@@ -1,4 +1,5 @@
 # Contributor: Patrick Jackson <PatrickSJackson gmail com>
+# Contributor: Evžen Kirillov <actionless.loveless gmail com>
 # Maintainer: Christoph Vigano <mail@cvigano.de>
 
 pkgname=st
@@ -19,7 +20,7 @@ source=(
 md5sums=('4f8ae2737120a8cba34b23c6020fe51e'
          'ed8025bef58c1055de3879f469596bc5'
          '22a01b5a79dfd69cf1a522b9309cee69'
-         '39a15f8a5e7f1bcfe85e5b148889803d')
+         '3dab26a5ff3d1f912c66cdf82e830df0')
 
 prepare() {
   cd "${pkgname%%-*}-${pkgver}"
