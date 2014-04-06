@@ -5,8 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Liberation Mono:pixelsize=12:antialias=false:autohint=false";
-static int borderpx = 2;
+static char font[] = "monoOne:pixelsize=13.5:autohint=false";
+static int borderxpx = 2;
+static int borderypx = 0;
 static char shell[] = "/bin/sh";
 
 /* timeouts (in milliseconds) */
@@ -25,33 +26,40 @@ static char termname[] = "st-256color";
 
 static unsigned int tabspaces = 8;
 
+/* background opacity */
+static const int alpha = 0xaa;
+//static const int alpha = 0xdd;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	"#000000",
+	"#b60050",
+	"#008877",
+	"#fc882b",
+	"#ad7fa8",
+	"#890089",
+	"#00a685",
+	"#888a85",
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	"#465457",
+	"#f92672",
+	"#86c22e",
+	"#ffea32",
+	"#ad5fc8",
+	"#e733b4",
+	"#51bd8c",
+	"#ffffff",
 
 	[255] = 0,
+	"#1a1a1a",
+	"#e9e9e9",
+	"#ae81ff",
 
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
+	"#000000",
 };
 
 
@@ -59,9 +67,9 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor
  */
-static unsigned int defaultfg = 7;
-static unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
+static unsigned int defaultfg = 256;
+static unsigned int defaultbg = 257;
+static unsigned int defaultcs = 258;
 
 /*
  * Colors used, when the specific fg == defaultfg. So in reverse mode this
