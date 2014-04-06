@@ -2,13 +2,13 @@
 # Contributor: Evžen Kirillov <actionless.loveless gmail com>
 # Maintainer: Christoph Vigano <mail@cvigano.de>
 
-pkgname=st-transparency-git
+pkgname=st-transparency
 appname='st'
 conflicts=(${appname})
 provides=(${appname})
 pkgver=0.5
 pkgrel=1
-pkgdesc='A simple virtual terminal emulator for X.'
+pkgdesc='A simple virtual terminal emulator for X with patches for transparency and separate border width.'
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxext' 'libxft')
