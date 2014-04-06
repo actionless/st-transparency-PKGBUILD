@@ -13,6 +13,7 @@ url="http://st.suckless.org"
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz)
 
 build() {
+  cp ../config.h $srcdir/$pkgname-$pkgver/
   cd $srcdir/$pkgname-$pkgver
 	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
