@@ -2,8 +2,8 @@
 # Maintainer: Christoph Vigano <mail@cvigano.de>
 
 pkgname=st
-pkgver=0.4.1
-pkgrel=1
+pkgver=0.5
+pkgrel=0
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64')
 license=('MIT')
@@ -16,7 +16,7 @@ source=(
 	enable_border_width_options.diff
 	config.h
 )
-md5sums=('fa03d702b6d67de395975155c87084e9'
+md5sums=('4f8ae2737120a8cba34b23c6020fe51e'
          'a2c0fa1d8c6eb00fe7629f58b3a78b97'
          '8cb0130be092883eb53e8514364c726b'
          'c7644d340cb9004a698b17a5bca31619')
