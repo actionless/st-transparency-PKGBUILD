@@ -19,12 +19,12 @@ source=(
 md5sums=('4f8ae2737120a8cba34b23c6020fe51e'
          'ed8025bef58c1055de3879f469596bc5'
          '22a01b5a79dfd69cf1a522b9309cee69'
-         '1a4926b726faa4ea599eaf1f06f86e9a')
+         '39a15f8a5e7f1bcfe85e5b148889803d')
 
 prepare() {
   cd "${pkgname%%-*}-${pkgver}"
-  #patch -i "${srcdir}/enable_transparency_options.diff"
-  #patch -i "${srcdir}/enable_border_width_options.diff"
+  patch -i "${srcdir}/enable_transparency_options.diff"
+  patch -i "${srcdir}/enable_border_width_options.diff"
 }
 
 build() {
