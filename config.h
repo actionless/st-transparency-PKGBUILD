@@ -94,7 +94,6 @@ static unsigned int defaultcs = 258;
 
 /* background opacity */
 static const int alpha = 0xdd;
-//static const int alpha = 0xdd;
 
 /*
  * Colors used, when the specific fg == defaultfg. So in reverse mode this
