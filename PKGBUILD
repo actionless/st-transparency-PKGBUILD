@@ -2,7 +2,7 @@
 # Maintainer: Christoph Vigano <mail@cvigano.de>
 
 pkgname=st
-pkgver=0.4.3
+pkgver=0.4.1
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64')
