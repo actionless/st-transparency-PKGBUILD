@@ -16,16 +16,13 @@ source=(
 	enable_border_width_options.diff
 	config.h
 )
-md5sums=(
-	'fa03d702b6d67de395975155c87084e9'
-	'SKIP'
-	'SKIP'
-	'SKIP'
-)
+md5sums=('fa03d702b6d67de395975155c87084e9'
+         'a2c0fa1d8c6eb00fe7629f58b3a78b97'
+         '8cb0130be092883eb53e8514364c726b'
+         'c7644d340cb9004a698b17a5bca31619')
 
 prepare() {
   cd "${pkgname%%-*}-${pkgver}"
-  ls -la
   patch -i "${srcdir}/enable_transparency_options.diff"
   patch -i "${srcdir}/enable_border_width_options.diff"
 }
