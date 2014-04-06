@@ -15,7 +15,7 @@ makedepends=('ncurses')
 url="http://st.suckless.org"
 source=(
 	http://dl.suckless.org/st/$appname-$pkgver.tar.gz
-	http://st.suckless.org/patches/st-0.4.1-argbbg.diff
+	http://st.suckless.org/patches/$appname-$pkgver-argbbg.diff
 	enable_border_width_options.diff
 	config.h
 )
