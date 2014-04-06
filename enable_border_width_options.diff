@@ -81,30 +81,30 @@ diff -u -r st-git/st-0.4.1/st.c st-patched/st-0.4.1/st.c
  		xclear(winx, winy + xw.ch, winx + width, xw.h);
  
 @@ -2995,20 +2995,20 @@
- 			xdraws(g.c, g, term.c.x, term.c.y, 1, sl);
+ 			xdraws(g.c, g, term.c.x, term.c.y, width, sl);
  		} else {
  			XftDrawRect(xw.draw, &dc.col[defaultcs],
--					borderpx + term.c.x * xw.cw,
+-					borderpx + curx * xw.cw,
 -					borderpx + term.c.y * xw.ch,
-+					borderxpx + term.c.x * xw.cw,
++					borderxpx + curx * xw.cw,
 +					borderypx + term.c.y * xw.ch,
  					xw.cw - 1, 1);
  			XftDrawRect(xw.draw, &dc.col[defaultcs],
--					borderpx + term.c.x * xw.cw,
+-					borderpx + curx * xw.cw,
 -					borderpx + term.c.y * xw.ch,
-+					borderxpx + term.c.x * xw.cw,
++					borderxpx + curx * xw.cw,
 +					borderypx + term.c.y * xw.ch,
  					1, xw.ch - 1);
  			XftDrawRect(xw.draw, &dc.col[defaultcs],
--					borderpx + (term.c.x + 1) * xw.cw - 1,
+-					borderpx + (curx + 1) * xw.cw - 1,
 -					borderpx + term.c.y * xw.ch,
-+					borderxpx + (term.c.x + 1) * xw.cw - 1,
++					borderxpx + (curx + 1) * xw.cw - 1,
 +					borderypx + term.c.y * xw.ch,
  					1, xw.ch - 1);
  			XftDrawRect(xw.draw, &dc.col[defaultcs],
--					borderpx + term.c.x * xw.cw,
+-					borderpx + curx * xw.cw,
 -					borderpx + (term.c.y + 1) * xw.ch - 1,
-+					borderxpx + term.c.x * xw.cw,
++					borderxpx + curx * xw.cw,
 +					borderypx + (term.c.y + 1) * xw.ch - 1,
  					xw.cw, 1);
  		}
