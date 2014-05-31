@@ -6,7 +6,7 @@ pkgname=st-transparency-git
 appname='st'
 conflicts=(${appname})
 provides=(${appname})
-pkgver=20140531.13857c3
+pkgver=20140531.1c03200
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X with patches for transparency and separate border width.'
 arch=('i686' 'x86_64')
@@ -18,12 +18,12 @@ source=(
 	git://git.suckless.org/st
 	enable_transparency_options.diff
 	enable_border_width_options.diff
-	config.h
+	config.diff
 )
 md5sums=('SKIP'
          '44ba565b9a4fe97d79d73be903a84054'
-         '1bd6ecfac11ac54f520e9c1184fb143c'
-         '5f322ee62c0bd72e990648e3ff6ab7d2')
+         '4c4b584e3752fc5caa59294456f0fb54'
+         '0a98972fe4377df541d92677d44bd307')
 
 pkgver(){
 	cd "${srcdir}/${_appname}"
@@ -32,14 +32,14 @@ pkgver(){
 
 prepare() {
 	cd "${srcdir}/${appname}"
+	cp config.def.h config.h
 	for patch_file in $(ls ${srcdir}/*.diff); do
-		echo "applying ${patch_file}"
+		echo "==> applying $(basename ${patch_file})"
 		patch -i "$patch_file"
 	done
 }
 
 build() {
-	cp ${srcdir}/config.h $srcdir/$appname/
 	cd $srcdir/$appname
 	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
