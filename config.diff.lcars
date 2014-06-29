@@ -6,7 +6,7 @@
   */
 -static char font[] = "Liberation Mono:pixelsize=12:antialias=false:autohint=false";
 -static int borderpx = 2;
-+static char font[] = "Dina:pixelsize=13";
++static char font[] = "monospace:pixelsize=12:antialias=false:autohint=false";
 +static int borderxpx = 2;
 +static int borderypx = 0;
 +
