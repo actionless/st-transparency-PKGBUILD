@@ -1,13 +1,13 @@
 diff --git a/config.mk b/config.mk
-index 6d90f86..cf34921 100644
+index 298484e..9410c91 100644
 --- a/config.mk
 +++ b/config.mk
 @@ -14,7 +14,7 @@ X11LIB = /usr/X11R6/lib
  INCS = -I. -I/usr/include -I${X11INC} \
         `pkg-config --cflags fontconfig` \
         `pkg-config --cflags freetype2`
--LIBS = -L/usr/lib -lc -L${X11LIB} -lm -lX11 -lutil -lXext -lXft \
-+LIBS = -L/usr/lib -lc -L${X11LIB} -lm -lX11 -lutil -lXext -lXft -lXrender \
+-LIBS = -L/usr/lib -lc -L${X11LIB} -lm -lrt -lX11 -lutil -lXext -lXft \
++LIBS = -L/usr/lib -lc -L${X11LIB} -lm -lrt -lX11 -lutil -lXext -lXft -lXrender \
         `pkg-config --libs fontconfig`  \
         `pkg-config --libs freetype2`
  
