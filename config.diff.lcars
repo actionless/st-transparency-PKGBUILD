@@ -6,7 +6,7 @@
   */
 -static char font[] = "Liberation Mono:pixelsize=12:antialias=false:autohint=false";
 -static int borderpx = 2;
-+static char font[] = "monospace:pixelsize=12:antialias=false:autohint=false";
++static char font[] = "monospace:pixelsize=14:antialias=true:autohint=true";
 +static int borderxpx = 2;
 +static int borderypx = 0;
 +
@@ -29,7 +29,7 @@
 +	"#cc6666",
 +	"#ff9966",
 +	"#cc9966",
-+	"#6666ff",
++	"#9966ff",
 +	"#cc6699",
 +	"#9999cc",
 +	"#ffcc99",
@@ -75,7 +75,7 @@
 +static unsigned int defaultcs = 258;
 +
 +/* background opacity */
-+static const int alpha = 0xff;
++static const int alpha = 0xe9;
  
  /*
   * Colors used, when the specific fg == defaultfg. So in reverse mode this
