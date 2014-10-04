@@ -6,7 +6,7 @@ pkgname=st-transparency-git
 appname='st'
 conflicts=(${appname})
 provides=(${appname})
-pkgver=20141004.909085c
+pkgver=20141004.90908b7
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X with patches for transparency and separate border width.'
 arch=('i686' 'x86_64')
@@ -14,7 +14,7 @@ pkgrel=1
 license=('MIT')
 depends=('libxext' 'libxft')
 optdepends=('utmp-git: update utmp files')
-makedepends=('ncurses')
+makedepends=('ncurses' 'git' 'ca-certificates')
 url="http://st.suckless.org"
 source=(
 	git://git.suckless.org/st
