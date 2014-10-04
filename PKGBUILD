@@ -14,7 +14,7 @@ pkgrel=1
 license=('MIT')
 depends=('libxext' 'libxft')
 optdepends=('utmp-git: update utmp files')
-makedepends=('ncurses' 'git' 'ca-certificates')
+makedepends=('ncurses' 'git')
 url="http://st.suckless.org"
 source=(
 	git://git.suckless.org/st
