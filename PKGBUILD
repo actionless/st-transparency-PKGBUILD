@@ -6,7 +6,7 @@ pkgname=st-transparency-git
 appname='st'
 conflicts=(${appname})
 provides=(${appname})
-pkgver=20141004.90908b7
+pkgver=20141204.9422258
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X with patches for transparency and separate border width.'
 arch=('i686' 'x86_64')
@@ -29,14 +29,14 @@ md5sums=('SKIP'
          '1a89c3eb7606c9fb627992123747a8b7'
          '9e0fe7d77c8bcfaba3ff8203895cfdfb'
          'SKIP'
-         '2cfbe485c13df35ff5e849068a52676a'
+         'fe855c9850398d476848c78123cd88c7'
          '0a98972fe4377df541d92677d44bd307'
-         '4f8cb4ee13d8051c145dda8c5e568945')
+         '1a14df9693651027320389e7bce35c44')
 
-pkgver(){
-	cd "${srcdir}/${_appname}"
-	git log -1 --format='%cd.%h' --date=short | tr -d -
-}
+#pkgver(){
+	#cd "${srcdir}/${_appname}"
+	#git log -1 --format='%cd.%h' --date=short | tr -d -
+#}
 
 prepare() {
 	cd "${srcdir}/${appname}"
