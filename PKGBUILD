@@ -31,7 +31,7 @@ md5sums=('SKIP'
          'SKIP'
          'fe855c9850398d476848c78123cd88c7'
          '0a98972fe4377df541d92677d44bd307'
-         '771b6d992c804594f10cdd5eb3c30049')
+         '4f0010b3346f1a9d72cdd455657e2d29')
 
 prepare() {
 	cd "${srcdir}/${appname}"
