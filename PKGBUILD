@@ -1,6 +1,8 @@
 # Contributor: Patrick Jackson <PatrickSJackson gmail com>
+# Contributor: Christoph Vigano <mail@cvigano.de>
 # Contributor: Evžen Kirillov <actionless.loveless gmail com>
-# Maintainer: Christoph Vigano <mail@cvigano.de>
+# Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
+# Contributor: Gaetan Bisson <bisson@archlinux.org>
 
 pkgname=st-transparency-git
 appname='st'
@@ -38,6 +40,12 @@ prepare() {
 		echo "==> applying $(basename ${patch_file})"
 		patch -i "$patch_file"
 	done
+	sed \
+		-e 's/CPPFLAGS =/CPPFLAGS +=/g' \
+		-e 's/CFLAGS =/CFLAGS +=/g' \
+		-e 's/LDFLAGS =/LDFLAGS +=/g' \
+		-i config.mk
+	sed '/char font/s/".*"/"monospace:pixelsize=24:antialias=true:autohint=true"/' -i config.h
 }
 
 build() {
@@ -47,7 +55,9 @@ build() {
 
 package() {
 	cd $srcdir/$appname
-	make PREFIX=/usr DESTDIR="$pkgdir" TERMINFO="$pkgdir/usr/share/terminfo" install
-	install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-	install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
+	export TERMINFO="${pkgdir}/usr/share/terminfo"
+	install -d "$TERMINFO"
+	make PREFIX=/usr DESTDIR="${pkgdir}" install
+	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
 }
