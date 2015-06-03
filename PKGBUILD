@@ -19,19 +19,17 @@ url="http://st.suckless.org"
 source=(
 	git://git.suckless.org/st
 	enable_transparency_options.diff
-	enable_border_width_options.diff
 	config.diff
 	config.diff.lcars
 	config.diff.light
 	config.diff.monovedek
 )
 md5sums=('SKIP'
-         '02f213e2fcc84fe8d8be79b9a3c374ab'
-         '9e5e9f62339cb93d31b6fa5eb9806401'
+         '602b41ed34e4d5e553ed8daefca50236'
          'SKIP'
-         'a86702a9ce1b5a88e109a7fd7a29ff58'
+         'fe855c9850398d476848c78123cd88c7'
          '0a98972fe4377df541d92677d44bd307'
-         'e442ed524a2e31b63e4580f26c422661')
+         '79161db11c5f952b7f758ce44841ad23')
 
 prepare() {
 	cd "${srcdir}/${appname}"
