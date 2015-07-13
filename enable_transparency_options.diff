@@ -1,15 +1,5 @@
-From 89fa10523de6da70abeccdf2d53c6210e4e83fa6 Mon Sep 17 00:00:00 2001
-From: actionless <actionless.loveless@gmail.com>
-Date: Tue, 16 Sep 2014 17:26:00 +0200
-Subject: [PATCH 2/2] feat(transparency): updated patch
-
----
- config.mk |  2 +-
- st.c      | 60 ++++++++++++++++++++++++++++++++++++++++++++++++++++--------
- 2 files changed, 53 insertions(+), 9 deletions(-)
-
 diff --git a/config.mk b/config.mk
-index 298484e..9410c91 100644
+index 67844dc..ce5753a 100644
 --- a/config.mk
 +++ b/config.mk
 @@ -14,7 +14,7 @@ X11LIB = /usr/X11R6/lib
@@ -22,34 +12,34 @@ index 298484e..9410c91 100644
         `pkg-config --libs freetype2`
  
 diff --git a/st.c b/st.c
-index dd3301b..9c9bea4 100644
+index 64e2cec..6b966f0 100644
 --- a/st.c
 +++ b/st.c
-@@ -61,6 +61,7 @@ char *argv0;
+@@ -60,6 +60,7 @@ char *argv0;
  #define XK_ANY_MOD    UINT_MAX
  #define XK_NO_MOD     0
  #define XK_SWITCH_MOD (1<<13)
 +#define OPAQUE 0Xff
  
- #define REDRAW_TIMEOUT (80*1000) /* 80 ms */
- 
+ /* macros */
+ #define MIN(a, b)		((a) < (b) ? (a) : (b))
 @@ -84,6 +85,7 @@ char *argv0;
- #define TRUERED(x)       (((x) & 0xff0000) >> 8)
- #define TRUEGREEN(x)     (((x) & 0xff00))
- #define TRUEBLUE(x)      (((x) & 0xff) << 8)
+ #define TRUERED(x)		(((x) & 0xff0000) >> 8)
+ #define TRUEGREEN(x)		(((x) & 0xff00))
+ #define TRUEBLUE(x)		(((x) & 0xff) << 8)
 +#define USE_ARGB (alpha != OPAQUE && opt_embed == NULL)
  
  
  enum glyph_attribute {
-@@ -257,6 +259,7 @@ typedef struct {
+@@ -266,6 +268,7 @@ typedef struct {
  	int w, h; /* window width and height */
  	int ch; /* char height */
  	int cw; /* char width  */
 +	int depth; /* bit depth */
  	char state; /* focus, redraw, visible */
+ 	int cursor; /* cursor style */
  } XWindow;
- 
-@@ -2765,8 +2768,7 @@ xresize(int col, int row) {
+@@ -3102,8 +3105,7 @@ xresize(int col, int row)
  	xw.th = MAX(1, row * xw.ch);
  
  	XFreePixmap(xw.dpy, xw.buf);
@@ -59,8 +49,8 @@ index dd3301b..9c9bea4 100644
  	XftDrawChange(xw.draw, xw.buf);
  	xclear(0, 0, xw.w, xw.h);
  }
-@@ -2797,6 +2799,13 @@ xloadcols(void) {
- 		}
+@@ -3150,7 +3152,15 @@ xloadcols(void)
+ 			XftColorFree(xw.dpy, xw.vis, xw.cmap, cp);
  	}
  
 +	/* set alpha value of bg color */
@@ -70,11 +60,13 @@ index dd3301b..9c9bea4 100644
 +		dc.col[defaultbg].pixel |= alpha << 24; // 0xcc000000;
 +	}
 +
-	for(i = 0; i < LEN(dc.col); i++)
-		if(!xloadcolor(i, NULL, &dc.col[i])) {
-			if(colorname[i])
-@@ -3072,7 +3081,38 @@ xinit(void) {
- 	if(!(xw.dpy = XOpenDisplay(NULL)))
+ 	for (i = 0; i < LEN(dc.col); i++)
++
+ 		if (!xloadcolor(i, NULL, &dc.col[i])) {
+ 			if (colorname[i])
+ 				die("Could not allocate color '%s'\n", colorname[i]);
+@@ -3415,7 +3425,38 @@ xinit(void)
+ 	if (!(xw.dpy = XOpenDisplay(NULL)))
  		die("Can't open display\n");
  	xw.scr = XDefaultScreen(xw.dpy);
 -	xw.vis = XDefaultVisual(xw.dpy, xw.scr);
@@ -112,8 +104,8 @@ index dd3301b..9c9bea4 100644
 +	}
  
  	/* font */
- 	if(!FcInit())
-@@ -3082,7 +3122,10 @@ xinit(void) {
+ 	if (!FcInit())
+@@ -3425,7 +3466,10 @@ xinit(void)
  	xloadfonts(usedfont, 0);
  
  	/* colors */
@@ -125,9 +117,9 @@ index dd3301b..9c9bea4 100644
  	xloadcols();
  
  	/* adjust fixed window geometry */
-@@ -3105,16 +3148,17 @@ xinit(void) {
- 	parent = opt_embed ? strtol(opt_embed, NULL, 0) : \
- 			XRootWindow(xw.dpy, xw.scr);
+@@ -3448,16 +3492,17 @@ xinit(void)
+ 	if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0))))
+ 		parent = XRootWindow(xw.dpy, xw.scr);
  	xw.win = XCreateWindow(xw.dpy, parent, xw.l, xw.t,
 -			xw.w, xw.h, 0, XDefaultDepth(xw.dpy, xw.scr), InputOutput,
 +			xw.w, xw.h, 0, xw.depth, InputOutput,
@@ -147,6 +139,3 @@ index dd3301b..9c9bea4 100644
  	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
  	XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, xw.w, xw.h);
  
--- 
-2.3.5
-

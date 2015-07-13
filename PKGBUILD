@@ -8,7 +8,7 @@ pkgname=st-transparency-git
 appname='st'
 conflicts=(${appname})
 provides=(${appname})
-pkgver=20150603
+pkgver=20150703
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X with patches for transparency and separate border width.'
 arch=('i686' 'x86_64')
@@ -26,7 +26,7 @@ source=(
 	config.diff.monovedek
 )
 md5sums=('SKIP'
-         '602b41ed34e4d5e553ed8daefca50236'
+         '736b51a91db840866cd77b92029a89eb'
          'SKIP'
          'fe855c9850398d476848c78123cd88c7'
          '0a98972fe4377df541d92677d44bd307'
@@ -44,7 +44,7 @@ prepare() {
 		-e 's/CFLAGS =/CFLAGS +=/g' \
 		-e 's/LDFLAGS =/LDFLAGS +=/g' \
 		-i config.mk
-	sed '/char font/s/".*"/"monospace:pixelsize=24:antialias=true:autohint=true"/' -i config.h
+	sed '/char font/s/".*"/"monospace:pixelsize=12:antialias=true:autohint=true"/' -i config.h
 }
 
 build() {
