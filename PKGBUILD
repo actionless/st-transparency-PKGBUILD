@@ -18,7 +18,8 @@ optdepends=('utmp-git: update utmp files')
 makedepends=('ncurses' 'git')
 url="http://st.suckless.org"
 source=(
-	git://git.suckless.org/st
+	#git://git.suckless.org/st
+	"git://github.com/actionless/st.git#branch=opt-colors"
 	enable_transparency_options.diff
 	config.diff
 	config.diff.lcars
@@ -27,15 +28,16 @@ source=(
 )
 md5sums=('SKIP'
          '602b41ed34e4d5e553ed8daefca50236'
-         'SKIP'
+         'b6c93fb575bcb39df98201c923c67683'
          'fe855c9850398d476848c78123cd88c7'
          '0a98972fe4377df541d92677d44bd307'
-         '79161db11c5f952b7f758ce44841ad23')
+         'b6c93fb575bcb39df98201c923c67683')
 
 prepare() {
 	cd "${srcdir}/${appname}"
 	cp config.def.h config.h
-	for patch_file in $(ls ${srcdir}/*.diff); do
+	#for patch_file in $(ls ${srcdir}/*.diff); do
+	for patch_file in $(ls ${srcdir}/config.diff); do
 		echo "==> applying $(basename ${patch_file})"
 		patch -i "$patch_file"
 	done
@@ -57,6 +59,8 @@ package() {
 	export TERMINFO="${pkgdir}/usr/share/terminfo"
 	install -d "$TERMINFO"
 	make PREFIX=/usr DESTDIR="${pkgdir}" install
+	rm $TERMINFO/s/st
+	rm $TERMINFO/s/st-256color
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
 }
