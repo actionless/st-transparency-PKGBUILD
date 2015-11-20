@@ -8,7 +8,7 @@ pkgname=st-transparency-git
 appname='st'
 conflicts=(${appname})
 provides=(${appname})
-pkgver=20150603
+pkgver=20151120
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X with patches for transparency and separate border width.'
 arch=('i686' 'x86_64')
@@ -28,10 +28,15 @@ source=(
 )
 md5sums=('SKIP'
          '602b41ed34e4d5e553ed8daefca50236'
-         'b6c93fb575bcb39df98201c923c67683'
+         '3386790da00d19c43a8267dd5f728b3a'
          'fe855c9850398d476848c78123cd88c7'
          '0a98972fe4377df541d92677d44bd307'
-         'b6c93fb575bcb39df98201c923c67683')
+         '3386790da00d19c43a8267dd5f728b3a')
+
+pkgver() {
+  cd "${srcdir}/${appname}"
+  printf "%s" "$(git log -n 1 --pretty="%ad" --date=short | tr -d -)"
+}
 
 prepare() {
 	cd "${srcdir}/${appname}"
@@ -60,7 +65,7 @@ package() {
 	install -d "$TERMINFO"
 	make PREFIX=/usr DESTDIR="${pkgdir}" install
 	rm $TERMINFO/s/st
-	rm $TERMINFO/s/st-256color
+	#rm $TERMINFO/s/st-256color
 	install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
 }
